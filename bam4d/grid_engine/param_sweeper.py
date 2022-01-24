@@ -17,7 +17,8 @@ DEFAULT_QSUB_FIELDS = {
     'sge_cluster_name': 'mycluster',
     'sge_entry_point': 'train.py',
     'sge_logdir': 'logs/',
-    'sge_gpu_type': 'volta'
+    'sge_gpu_type': 'volta',
+    'sge_root_directory': '~/incubator',
 }
 
 # a template for the entire submit script
@@ -48,6 +49,8 @@ conda activate poetry
 
 export PYTHONUNBUFFERED=1
 
+# Set up poetry
+cd {sge_root_directory}
 poetry shell
 
 python {sge_entry_point} {script_args}
@@ -239,15 +242,14 @@ if __name__ == '__main__':
             'sge_job_name': 'sge_test'
         },
         {
-
             'gym-id': ['GDY-Clusters-0'],
             'exp-name': ['griddly-clusters-sge-sweep'],
             'track': ['True'],
             'total-timesteps': [50000000],
             'processes': [8],
             'num-envs': [128],
-            'learning-rate': [0.005, 0.001, 0.0005],
-            'ent-coef': [0.2, 0.1, 0.05],
+            'learning-rate': [0.005],
+            'ent-coef': [0.2],
             'eval-interval': [50000],
             'eval-steps': [300],
             'eval-num-env': [4]
