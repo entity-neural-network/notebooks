@@ -1,7 +1,7 @@
 #!/bin/sh
 #$ -cwd
 #$ -pe smp 8
-#$ -l h_vmem=11GB
+#$ -l h_vmem=11G
 #$ -N griddly-clusters-sge-sweep
 #$ -l gpu=1
 #$ -l gpu_type=ampere

@@ -10,7 +10,7 @@ if __name__ == '__main__':
             'sge_num_cpus': 8,
             'sge_num_gpus': 1,
             'sge_memory': 11,
-            'sge_memory_unit': 'GB',
+            'sge_memory_unit': 'G',
             'sge_cluster_name': 'adrena',
             'sge_gpu_type': 'ampere',
             'sge_root_directory': '~/enn/incubator',
