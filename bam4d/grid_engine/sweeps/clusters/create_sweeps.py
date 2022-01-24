@@ -5,7 +5,7 @@ if __name__ == '__main__':
     job_name = 'griddly-clusters-sge-sweep'
     script = get_script(
         {
-            'sge_time_h': 2,
+            'sge_time_h': 1,
             'sge_job_name': f'{job_name}',
             'sge_num_cpus': 8,
             'sge_num_gpus': 1,
@@ -23,6 +23,7 @@ if __name__ == '__main__':
             'total-timesteps': [50000000],
             'processes': [8],
             'num-envs': [128],
+            'num-steps': [32, 64, 128],
             'learning-rate': [0.005, 0.001, 0.0005],
             'ent-coef': [0.2, 0.1, 0.05],
             'eval-interval': [50000],

@@ -6,8 +6,8 @@
 #$ -l gpu=1
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
-#$ -l h_rt=2:0:0
-#$ -t 1-44
+#$ -l h_rt=1:0:0
+#$ -t 1-134
 #$ -o logs/
 #$ -e logs/
 
@@ -17,6 +17,7 @@ track_values=( True )
 total_timesteps_values=( 50000000 )
 processes_values=( 8 )
 num_envs_values=( 128 )
+num_steps_values=( 32 64 128 )
 learning_rate_values=( 0.005 0.001 0.0005 )
 ent_coef_values=( 0.2 0.1 0.05 )
 eval_interval_values=( 50000 )
@@ -37,6 +38,8 @@ processes=${processes_values[$(( trial % ${#processes_values[@]} ))]}
 trial=$(( trial / ${#processes_values[@]} ))
 num_envs=${num_envs_values[$(( trial % ${#num_envs_values[@]} ))]}
 trial=$(( trial / ${#num_envs_values[@]} ))
+num_steps=${num_steps_values[$(( trial % ${#num_steps_values[@]} ))]}
+trial=$(( trial / ${#num_steps_values[@]} ))
 learning_rate=${learning_rate_values[$(( trial % ${#learning_rate_values[@]} ))]}
 trial=$(( trial / ${#learning_rate_values[@]} ))
 ent_coef=${ent_coef_values[$(( trial % ${#ent_coef_values[@]} ))]}
@@ -61,4 +64,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --data-dir=${data_dir}
