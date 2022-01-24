@@ -5,7 +5,7 @@
 #$ -N griddly-clusters-sge-sweep
 #$ -l gpu=1
 #$ -l gpu_type=ampere
-#$ -l cluster=adrena
+#$ -l cluster=andrena
 #$ -l h_rt=2:0:0
 #$ -t 1-44
 #$ -o logs/

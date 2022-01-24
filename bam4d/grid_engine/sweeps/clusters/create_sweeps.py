@@ -11,7 +11,7 @@ if __name__ == '__main__':
             'sge_num_gpus': 1,
             'sge_memory': 11,
             'sge_memory_unit': 'G',
-            'sge_cluster_name': 'adrena',
+            'sge_cluster_name': 'andrena',
             'sge_gpu_type': 'ampere',
             'sge_root_directory': '~/enn/incubator',
             'sge_entry_point': '~/enn_ppo/enn_ppo/train.py'
