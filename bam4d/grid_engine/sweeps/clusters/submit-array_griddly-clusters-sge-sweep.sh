@@ -52,7 +52,7 @@ trial=$(( trial / ${#eval_processes_values[@]} ))
 data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
 
 module purge
-module load anaconda3
+module load anaconda3 vulkan-sdk
 conda activate poetry
 
 export PYTHONUNBUFFERED=1

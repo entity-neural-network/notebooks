@@ -44,7 +44,7 @@ trial=${{SGE_TASK_ID}}
 {param_val_assign}
 
 module purge
-module load anaconda3
+module load anaconda3 vulkan-sdk
 conda activate poetry
 
 export PYTHONUNBUFFERED=1
