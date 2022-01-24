@@ -14,7 +14,7 @@ if __name__ == '__main__':
             'sge_cluster_name': 'andrena',
             'sge_gpu_type': 'ampere',
             'sge_root_directory': '~/enn/incubator',
-            'sge_entry_point': '~/enn_ppo/enn_ppo/train.py'
+            'sge_entry_point': '~/enn/incubator/enn_ppo/enn_ppo/train.py'
         },
         {
             'gym-id': ['GDY-Clusters-0', 'GDY-Clusters-1', 'GDY-Clusters-2', 'GDY-Clusters-3', 'GDY-Clusters-4'],
