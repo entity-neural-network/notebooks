@@ -27,8 +27,9 @@ if __name__ == '__main__':
             'ent-coef': [0.2, 0.1, 0.05],
             'eval-interval': [50000],
             'eval-steps': [300],
-            'eval-num-env': [4],
-            'eval-processes': [4]
+            'eval-num-env': [8],
+            'eval-processes': [4],
+            'data-dir': [f'/data/scratch/acw434/{job_name}']
         })
 
     with open(f'submit-array_{job_name}.sh', 'w') as f:

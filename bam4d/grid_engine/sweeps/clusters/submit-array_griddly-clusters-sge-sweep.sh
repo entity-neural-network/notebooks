@@ -21,8 +21,9 @@ learning_rate_values=( 0.005 0.001 0.0005 )
 ent_coef_values=( 0.2 0.1 0.05 )
 eval_interval_values=( 50000 )
 eval_steps_values=( 300 )
-eval_num_env_values=( 4 )
+eval_num_env_values=( 8 )
 eval_processes_values=( 4 )
+data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-sweep )
 trial=${SGE_TASK_ID}
 gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
 trial=$(( trial / ${#gym_id_values[@]} ))
@@ -47,6 +48,8 @@ trial=$(( trial / ${#eval_steps_values[@]} ))
 eval_num_env=${eval_num_env_values[$(( trial % ${#eval_num_env_values[@]} ))]}
 trial=$(( trial / ${#eval_num_env_values[@]} ))
 eval_processes=${eval_processes_values[$(( trial % ${#eval_processes_values[@]} ))]}
+trial=$(( trial / ${#eval_processes_values[@]} ))
+data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
 
 module purge
 module load anaconda3
@@ -58,4 +61,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --data-dir=${data_dir}
