@@ -25,7 +25,6 @@ if __name__ == '__main__':
             'num-envs': [1024, 2048, 4096],
             'num-steps': [128, 256, 512],
             'num-minibatches': [16, 32, 64],
-            'microbatch-size': [1, 2, 4],
             'learning-rate': [0.005],
             'ent-coef': [0.2],
             'data-dir': [f'/data/scratch/acw434/{job_name}']

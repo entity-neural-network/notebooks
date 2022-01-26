@@ -7,7 +7,7 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-80
+#$ -t 1-26
 #$ -o logs/
 #$ -e logs/
 
@@ -19,7 +19,6 @@ processes_values=( 8 )
 num_envs_values=( 1024 2048 4096 )
 num_steps_values=( 128 256 512 )
 num_minibatches_values=( 16 32 64 )
-microbatch_size_values=( 1 2 4 )
 learning_rate_values=( 0.005 )
 ent_coef_values=( 0.2 )
 data_dir_values=( /data/scratch/acw434/griddly_clusters_find_fastest )
@@ -40,8 +39,6 @@ num_steps=${num_steps_values[$(( trial % ${#num_steps_values[@]} ))]}
 trial=$(( trial / ${#num_steps_values[@]} ))
 num_minibatches=${num_minibatches_values[$(( trial % ${#num_minibatches_values[@]} ))]}
 trial=$(( trial / ${#num_minibatches_values[@]} ))
-microbatch_size=${microbatch_size_values[$(( trial % ${#microbatch_size_values[@]} ))]}
-trial=$(( trial / ${#microbatch_size_values[@]} ))
 learning_rate=${learning_rate_values[$(( trial % ${#learning_rate_values[@]} ))]}
 trial=$(( trial / ${#learning_rate_values[@]} ))
 ent_coef=${ent_coef_values[$(( trial % ${#ent_coef_values[@]} ))]}
@@ -60,4 +57,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --microbatch-size=${microbatch_size} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --data-dir=${data_dir}
