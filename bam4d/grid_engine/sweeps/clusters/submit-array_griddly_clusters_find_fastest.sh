@@ -7,7 +7,7 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-15
+#$ -t 1-11
 #$ -o logs/
 #$ -e logs/
 
@@ -16,7 +16,7 @@ exp_name_values=( griddly_clusters_find_fastest )
 track_values=( True )
 total_timesteps_values=( 50000000 )
 processes_values=( 8 )
-num_envs_values=( 128 256 512 1024 )
+num_envs_values=( 1024 2048 4096 )
 num_steps_values=( 32 64 128 256 )
 learning_rate_values=( 0.005 )
 ent_coef_values=( 0.2 )
