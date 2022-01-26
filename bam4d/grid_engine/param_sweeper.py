@@ -43,6 +43,8 @@ TEMPLATE = '''
 trial=${{SGE_TASK_ID}}
 {param_val_assign}
 
+export OMP_NUM_THREADS=1
+
 module purge
 module load cuda anaconda3 vulkan-sdk
 conda activate conda_poetry_base
