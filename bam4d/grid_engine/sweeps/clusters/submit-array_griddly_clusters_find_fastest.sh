@@ -56,7 +56,7 @@ data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
 
 module purge
 module load anaconda3 vulkan-sdk
-conda activate poetry
+conda activate conda_poetry_base
 
 export PYTHONUNBUFFERED=1
 
