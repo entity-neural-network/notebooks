@@ -23,7 +23,7 @@ if __name__ == '__main__':
             'total-timesteps': [50000000],
             'processes': [8],
             'num-envs': [1024, 2048, 4096],
-            'num-steps': [32, 64, 128, 256],
+            'num-steps': [128, 256, 512, 1024],
             'learning-rate': [0.005],
             'ent-coef': [0.2],
             'eval-interval': [50000],
