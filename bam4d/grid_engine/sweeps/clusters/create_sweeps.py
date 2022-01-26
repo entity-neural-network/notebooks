@@ -20,16 +20,17 @@ if __name__ == '__main__':
             'gym-id': ['GDY-Clusters-0', 'GDY-Clusters-1', 'GDY-Clusters-2', 'GDY-Clusters-3', 'GDY-Clusters-4'],
             'exp-name': [f'{job_name}'],
             'track': ['True'],
-            'total-timesteps': [50000000],
+            'total-timesteps': [5000000],
             'processes': [8],
-            'num-envs': [128],
-            'num-steps': [32, 64, 128],
+            'num-envs': [1024, 2048],
+            'num-steps': [128, 256],
             'learning-rate': [0.005, 0.001, 0.0005],
             'ent-coef': [0.2, 0.1, 0.05],
             'eval-interval': [50000],
             'eval-steps': [300],
             'eval-num-env': [8],
             'eval-processes': [4],
+            'eval-capture-videos': [True],
             'data-dir': [f'/data/scratch/acw434/{job_name}']
         })
 

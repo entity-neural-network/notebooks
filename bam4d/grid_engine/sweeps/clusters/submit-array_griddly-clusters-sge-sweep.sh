@@ -7,23 +7,24 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-134
+#$ -t 1-179
 #$ -o logs/
 #$ -e logs/
 
 gym_id_values=( GDY-Clusters-0 GDY-Clusters-1 GDY-Clusters-2 GDY-Clusters-3 GDY-Clusters-4 )
 exp_name_values=( griddly-clusters-sge-sweep )
 track_values=( True )
-total_timesteps_values=( 50000000 )
+total_timesteps_values=( 5000000 )
 processes_values=( 8 )
-num_envs_values=( 128 )
-num_steps_values=( 32 64 128 )
+num_envs_values=( 1024 2048 )
+num_steps_values=( 128 256 )
 learning_rate_values=( 0.005 0.001 0.0005 )
 ent_coef_values=( 0.2 0.1 0.05 )
 eval_interval_values=( 50000 )
 eval_steps_values=( 300 )
 eval_num_env_values=( 8 )
 eval_processes_values=( 4 )
+eval_capture_videos_values=( True )
 data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-sweep )
 trial=${SGE_TASK_ID}
 gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
@@ -52,6 +53,8 @@ eval_num_env=${eval_num_env_values[$(( trial % ${#eval_num_env_values[@]} ))]}
 trial=$(( trial / ${#eval_num_env_values[@]} ))
 eval_processes=${eval_processes_values[$(( trial % ${#eval_processes_values[@]} ))]}
 trial=$(( trial / ${#eval_processes_values[@]} ))
+eval_capture_videos=${eval_capture_videos_values[$(( trial % ${#eval_capture_videos_values[@]} ))]}
+trial=$(( trial / ${#eval_capture_videos_values[@]} ))
 data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
 
 module purge
@@ -64,4 +67,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --learning-rate=${learning_rate} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --data-dir=${data_dir}
