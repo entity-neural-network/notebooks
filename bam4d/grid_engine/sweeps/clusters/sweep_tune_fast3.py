@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'griddly-clusters-sge-test2'
+    job_name = 'griddly-clusters-sge-test3'
     script = get_script(
         {
             'sge_time_h': 1,
