@@ -20,7 +20,7 @@ num_envs_values=( 4096 )
 num_steps_values=( 128 )
 num_minibatches_values=( 32 )
 learning_rate_values=( 0.05 0.01 0.005 )
-ent_coef_values=( 0.2 0.1 0.05 )
+ent_coef_values=( 0.7 0.5 0.1 )
 eval_interval_values=( 1000000 )
 eval_steps_values=( 300 )
 eval_num_env_values=( 8 )
@@ -56,8 +56,6 @@ trial=$(( trial / ${#eval_num_env_values[@]} ))
 eval_processes=${eval_processes_values[$(( trial % ${#eval_processes_values[@]} ))]}
 trial=$(( trial / ${#eval_processes_values[@]} ))
 data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
-
-export OMP_NUM_THREADS=1
 
 module purge
 module load cuda anaconda3 vulkan-sdk

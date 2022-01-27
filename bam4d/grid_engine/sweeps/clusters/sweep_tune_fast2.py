@@ -26,7 +26,7 @@ if __name__ == '__main__':
             'num-steps': [128],
             'num-minibatches': [16],
             'learning-rate': [0.05, 0.01, 0.005],
-            'ent-coef': [0.2, 0.1, 0.05],
+            'ent-coef': [0.7, 0.5, 0.1],
             'eval-interval': [1000000],
             'eval-steps': [300],
             'eval-num-env': [8],
