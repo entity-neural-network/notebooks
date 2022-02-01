@@ -7,7 +7,7 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-49
+#$ -t 1-50
 #$ -o logs/
 #$ -e logs/
 

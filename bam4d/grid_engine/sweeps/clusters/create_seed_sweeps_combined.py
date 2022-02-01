@@ -20,7 +20,7 @@ if __name__ == '__main__':
             'gym-id': ['GDY-Clusters-All'],
             'exp-name': [f'{job_name}'],
             'track': ['True'],
-            'total-timesteps': [10000000],
+            'total-timesteps': [50000000],
             'processes': [8],
             'num-envs': [1024],
             'num-steps': [64],

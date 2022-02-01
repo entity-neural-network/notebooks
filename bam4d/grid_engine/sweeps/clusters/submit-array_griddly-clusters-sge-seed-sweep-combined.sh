@@ -7,14 +7,14 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-9
+#$ -t 1-10
 #$ -o logs/
 #$ -e logs/
 
 gym_id_values=( GDY-Clusters-All )
 exp_name_values=( griddly-clusters-sge-seed-sweep-combined )
 track_values=( True )
-total_timesteps_values=( 10000000 )
+total_timesteps_values=( 50000000 )
 processes_values=( 8 )
 num_envs_values=( 1024 )
 num_steps_values=( 64 )

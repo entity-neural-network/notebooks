@@ -182,7 +182,7 @@ def get_script(fields, params, param_order=None):
     num_jobs = 1
     for vals in params.values():
         num_jobs *= len(vals)
-    num_jobs -= 1
+    #num_jobs -= 1
 
     # get bash code for param sweeping
     init_lines, assign_lines = _get_params_bash(
