@@ -2,19 +2,19 @@
 #$ -cwd
 #$ -pe smp 8
 #$ -l h_vmem=11G
-#$ -N griddly-clusters-sge-seed-sweep
+#$ -N griddly-clusters-sge-seed-sweep-combined-minibatch16
 #$ -l gpu=1
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=1:0:0
-#$ -t 1-50
+#$ -t 1-10
 #$ -o logs/
 #$ -e logs/
 
-gym_id_values=( GDY-Clusters-0 GDY-Clusters-1 GDY-Clusters-2 GDY-Clusters-3 GDY-Clusters-4 )
-exp_name_values=( griddly-clusters-sge-seed-sweep )
+gym_id_values=( GDY-Clusters-All )
+exp_name_values=( griddly-clusters-sge-seed-sweep-combined-minibatch16 )
 track_values=( True )
-total_timesteps_values=( 10000000 )
+total_timesteps_values=( 50000000 )
 processes_values=( 8 )
 num_envs_values=( 1024 )
 num_steps_values=( 64 )
@@ -27,7 +27,7 @@ eval_steps_values=( 500 )
 eval_num_env_values=( 8 )
 eval_processes_values=( 4 )
 eval_capture_videos_values=( True )
-data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep )
+data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep-combined-minibatch16 )
 trial=${SGE_TASK_ID}
 gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
 trial=$(( trial / ${#gym_id_values[@]} ))
@@ -43,6 +43,8 @@ num_envs=${num_envs_values[$(( trial % ${#num_envs_values[@]} ))]}
 trial=$(( trial / ${#num_envs_values[@]} ))
 num_steps=${num_steps_values[$(( trial % ${#num_steps_values[@]} ))]}
 trial=$(( trial / ${#num_steps_values[@]} ))
+num_minibatches=${num_minibatches_values[$(( trial % ${#num_minibatches_values[@]} ))]}
+trial=$(( trial / ${#num_minibatches_values[@]} ))
 learning_rate=${learning_rate_values[$(( trial % ${#learning_rate_values[@]} ))]}
 trial=$(( trial / ${#learning_rate_values[@]} ))
 seed=${seed_values[$(( trial % ${#seed_values[@]} ))]}
@@ -71,4 +73,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --learning-rate=${learning_rate} --seed=${seed} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --learning-rate=${learning_rate} --seed=${seed} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --data-dir=${data_dir}

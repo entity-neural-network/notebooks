@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'griddly-clusters-sge-seed-sweep-combined'
+    job_name = 'griddly-clusters-sge-seed-sweep-combined-minibatch16'
     script = get_script(
         {
             'sge_time_h': 1,
@@ -24,6 +24,7 @@ if __name__ == '__main__':
             'processes': [8],
             'num-envs': [1024],
             'num-steps': [64],
+            'num-minibatches': [16],
             'learning-rate': [0.005],
             'seed': [0,1,2,3,4,5,6,7,8,9],
             'ent-coef': [0.2],
