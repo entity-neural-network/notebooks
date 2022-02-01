@@ -27,44 +27,44 @@ eval_steps_values=( 500 )
 eval_num_env_values=( 8 )
 eval_processes_values=( 4 )
 eval_capture_videos_values=( True )
-translate_values=( {"reference_entity": "avatar", "position_features": ["x", "y"]} )
+translate_values=( "{\"reference_entity\": \"avatar\", \"position_features\": [\"x\", \"y\"]}" )
 data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep-translated )
 trial=${SGE_TASK_ID}
-gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
+gym_id="${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}"
 trial=$(( trial / ${#gym_id_values[@]} ))
-exp_name=${exp_name_values[$(( trial % ${#exp_name_values[@]} ))]}
+exp_name="${exp_name_values[$(( trial % ${#exp_name_values[@]} ))]}"
 trial=$(( trial / ${#exp_name_values[@]} ))
-track=${track_values[$(( trial % ${#track_values[@]} ))]}
+track="${track_values[$(( trial % ${#track_values[@]} ))]}"
 trial=$(( trial / ${#track_values[@]} ))
-total_timesteps=${total_timesteps_values[$(( trial % ${#total_timesteps_values[@]} ))]}
+total_timesteps="${total_timesteps_values[$(( trial % ${#total_timesteps_values[@]} ))]}"
 trial=$(( trial / ${#total_timesteps_values[@]} ))
-processes=${processes_values[$(( trial % ${#processes_values[@]} ))]}
+processes="${processes_values[$(( trial % ${#processes_values[@]} ))]}"
 trial=$(( trial / ${#processes_values[@]} ))
-num_envs=${num_envs_values[$(( trial % ${#num_envs_values[@]} ))]}
+num_envs="${num_envs_values[$(( trial % ${#num_envs_values[@]} ))]}"
 trial=$(( trial / ${#num_envs_values[@]} ))
-num_steps=${num_steps_values[$(( trial % ${#num_steps_values[@]} ))]}
+num_steps="${num_steps_values[$(( trial % ${#num_steps_values[@]} ))]}"
 trial=$(( trial / ${#num_steps_values[@]} ))
-num_minibatches=${num_minibatches_values[$(( trial % ${#num_minibatches_values[@]} ))]}
+num_minibatches="${num_minibatches_values[$(( trial % ${#num_minibatches_values[@]} ))]}"
 trial=$(( trial / ${#num_minibatches_values[@]} ))
-learning_rate=${learning_rate_values[$(( trial % ${#learning_rate_values[@]} ))]}
+learning_rate="${learning_rate_values[$(( trial % ${#learning_rate_values[@]} ))]}"
 trial=$(( trial / ${#learning_rate_values[@]} ))
-seed=${seed_values[$(( trial % ${#seed_values[@]} ))]}
+seed="${seed_values[$(( trial % ${#seed_values[@]} ))]}"
 trial=$(( trial / ${#seed_values[@]} ))
-ent_coef=${ent_coef_values[$(( trial % ${#ent_coef_values[@]} ))]}
+ent_coef="${ent_coef_values[$(( trial % ${#ent_coef_values[@]} ))]}"
 trial=$(( trial / ${#ent_coef_values[@]} ))
-eval_interval=${eval_interval_values[$(( trial % ${#eval_interval_values[@]} ))]}
+eval_interval="${eval_interval_values[$(( trial % ${#eval_interval_values[@]} ))]}"
 trial=$(( trial / ${#eval_interval_values[@]} ))
-eval_steps=${eval_steps_values[$(( trial % ${#eval_steps_values[@]} ))]}
+eval_steps="${eval_steps_values[$(( trial % ${#eval_steps_values[@]} ))]}"
 trial=$(( trial / ${#eval_steps_values[@]} ))
-eval_num_env=${eval_num_env_values[$(( trial % ${#eval_num_env_values[@]} ))]}
+eval_num_env="${eval_num_env_values[$(( trial % ${#eval_num_env_values[@]} ))]}"
 trial=$(( trial / ${#eval_num_env_values[@]} ))
-eval_processes=${eval_processes_values[$(( trial % ${#eval_processes_values[@]} ))]}
+eval_processes="${eval_processes_values[$(( trial % ${#eval_processes_values[@]} ))]}"
 trial=$(( trial / ${#eval_processes_values[@]} ))
-eval_capture_videos=${eval_capture_videos_values[$(( trial % ${#eval_capture_videos_values[@]} ))]}
+eval_capture_videos="${eval_capture_videos_values[$(( trial % ${#eval_capture_videos_values[@]} ))]}"
 trial=$(( trial / ${#eval_capture_videos_values[@]} ))
-translate=${translate_values[$(( trial % ${#translate_values[@]} ))]}
+translate="${translate_values[$(( trial % ${#translate_values[@]} ))]}"
 trial=$(( trial / ${#translate_values[@]} ))
-data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
+data_dir="${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}"
 
 module purge
 module load cuda anaconda3 vulkan-sdk
@@ -76,4 +76,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --learning-rate=${learning_rate} --seed=${seed} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --translate=${translate} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id="${gym_id}" --exp-name="${exp_name}" --track="${track}" --total-timesteps="${total_timesteps}" --processes="${processes}" --num-envs="${num_envs}" --num-steps="${num_steps}" --num-minibatches="${num_minibatches}" --learning-rate="${learning_rate}" --seed="${seed}" --ent-coef="${ent_coef}" --eval-interval="${eval_interval}" --eval-steps="${eval_steps}" --eval-num-env="${eval_num_env}" --eval-processes="${eval_processes}" --eval-capture-videos="${eval_capture_videos}" --translate="${translate}" --data-dir="${data_dir}"

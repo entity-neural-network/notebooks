@@ -70,7 +70,7 @@ def _len(arr):
 
 
 def _get(arr, elem):
-    return '${{%s[%s]}}' % (arr, elem)
+    return '"${{%s[%s]}}"' % (arr, elem)
 
 
 def _eq(var, val):
@@ -182,7 +182,6 @@ def get_script(fields, params, param_order=None):
     num_jobs = 1
     for vals in params.values():
         num_jobs *= len(vals)
-    #num_jobs -= 1
 
     # get bash code for param sweeping
     init_lines, assign_lines = _get_params_bash(
@@ -191,7 +190,7 @@ def get_script(fields, params, param_order=None):
     # build args
     script_args = ''
     for key in param_order:
-        script_args += f' --{key}=${{{key.replace("-", "_")}}}'
+        script_args += f' --{key}="${{{key.replace("-", "_")}}}"'
 
     # build template substitutions (overriding defaults)
     subs = {
