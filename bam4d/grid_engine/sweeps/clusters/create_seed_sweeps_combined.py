@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'griddly-clusters-sge-seed-sweep-combined-minibatch16'
+    job_name = 'griddly-clusters-sge-seed-sweep-combined-translated'
     script = get_script(
         {
             'sge_time_h': 6,
@@ -30,9 +30,10 @@ if __name__ == '__main__':
             'ent-coef': [0.2],
             'eval-interval': [1000000],
             'eval-steps': [500],
-            'eval-num-env': [8],
+            'eval-num-env': [4],
             'eval-processes': [4],
             'eval-capture-videos': [True],
+            'translate': ['{"reference_entity": "avatar", "position_features": ["x", "y"]}'],
             'data-dir': [f'/data/scratch/acw434/{job_name}']
         })
 

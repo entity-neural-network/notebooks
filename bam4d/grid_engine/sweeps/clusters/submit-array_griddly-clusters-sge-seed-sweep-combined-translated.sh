@@ -2,7 +2,7 @@
 #$ -cwd
 #$ -pe smp 8
 #$ -l h_vmem=11G
-#$ -N griddly-clusters-sge-seed-sweep-combined-minibatch16
+#$ -N griddly-clusters-sge-seed-sweep-combined-translated
 #$ -l gpu=1
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
@@ -12,7 +12,7 @@
 #$ -e logs/
 
 gym_id_values=( GDY-Clusters-All )
-exp_name_values=( griddly-clusters-sge-seed-sweep-combined-minibatch16 )
+exp_name_values=( griddly-clusters-sge-seed-sweep-combined-translated )
 track_values=( True )
 total_timesteps_values=( 50000000 )
 processes_values=( 8 )
@@ -28,7 +28,7 @@ eval_num_env_values=( 4 )
 eval_processes_values=( 4 )
 eval_capture_videos_values=( True )
 translate_values=( {"reference_entity": "avatar", "position_features": ["x", "y"]} )
-data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep-combined-minibatch16 )
+data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep-combined-translated )
 trial=${SGE_TASK_ID}
 gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
 trial=$(( trial / ${#gym_id_values[@]} ))

@@ -27,6 +27,7 @@ eval_steps_values=( 500 )
 eval_num_env_values=( 8 )
 eval_processes_values=( 4 )
 eval_capture_videos_values=( True )
+translate_values=( {"reference_entity": "avatar", "position_features": ["x", "y"]} )
 data_dir_values=( /data/scratch/acw434/griddly-clusters-sge-seed-sweep-minibatch16 )
 trial=${SGE_TASK_ID}
 gym_id=${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}
@@ -61,6 +62,8 @@ eval_processes=${eval_processes_values[$(( trial % ${#eval_processes_values[@]} 
 trial=$(( trial / ${#eval_processes_values[@]} ))
 eval_capture_videos=${eval_capture_videos_values[$(( trial % ${#eval_capture_videos_values[@]} ))]}
 trial=$(( trial / ${#eval_capture_videos_values[@]} ))
+translate=${translate_values[$(( trial % ${#translate_values[@]} ))]}
+trial=$(( trial / ${#translate_values[@]} ))
 data_dir=${data_dir_values[$(( trial % ${#data_dir_values[@]} ))]}
 
 module purge
@@ -73,4 +76,4 @@ export PYTHONUNBUFFERED=1
 cd ~/enn/incubator
 poetry shell
 
-python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --learning-rate=${learning_rate} --seed=${seed} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --data-dir=${data_dir}
+python ~/enn/incubator/enn_ppo/enn_ppo/train.py  --gym-id=${gym_id} --exp-name=${exp_name} --track=${track} --total-timesteps=${total_timesteps} --processes=${processes} --num-envs=${num_envs} --num-steps=${num_steps} --num-minibatches=${num_minibatches} --learning-rate=${learning_rate} --seed=${seed} --ent-coef=${ent_coef} --eval-interval=${eval_interval} --eval-steps=${eval_steps} --eval-num-env=${eval_num_env} --eval-processes=${eval_processes} --eval-capture-videos=${eval_capture_videos} --translate=${translate} --data-dir=${data_dir}
