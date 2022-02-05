@@ -5,7 +5,7 @@ if __name__ == '__main__':
     job_name = 'griddly-clusters-generated-seed-sweep-translated'
     script = get_script(
         {
-            'sge_time_h': 1,
+            'sge_time_h': 6,
             'sge_job_name': f'{job_name}',
             'sge_num_cpus': 8,
             'sge_num_gpus': 1,
