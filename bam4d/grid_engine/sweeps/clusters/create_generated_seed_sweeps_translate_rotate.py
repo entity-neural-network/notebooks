@@ -33,7 +33,7 @@ if __name__ == '__main__':
             'eval-num-env': [1],
             'eval-processes': [1],
             'eval-capture-videos': [True],
-            'translate': ['"{\\"reference_entity\\": \\"avatar\\", \\"position_features\\": [\\"x\\", \\"y\\"]}", \\"orientation_features\\": [\\"ox\\", \\"oy\\"]'],
+            'translate': ['"{\\"reference_entity\\": \\"avatar\\", \\"position_features\\": [\\"x\\", \\"y\\"], \\"orientation_features\\": [\\"ox\\", \\"oy\\"]}"'],
             'data-dir': [f'/data/scratch/acw434/{job_name}']
         })
 
