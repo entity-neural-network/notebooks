@@ -2,26 +2,26 @@
 #$ -cwd
 #$ -pe smp 8
 #$ -l h_vmem=11G
-#$ -N griddly-clusters-generated-seed-sweep-translation-rotation-relpos
+#$ -N griddly-clusters-generated-param-sweep-translation-rotation-relpos
 #$ -l gpu=1
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=6:0:0
-#$ -t 1-30
+#$ -t 1-27
 #$ -o logs/
 #$ -e logs/
 
 gym_id_values=( GDY-Clusters-Generated-Small GDY-Clusters-Generated-Medium GDY-Clusters-Generated-Large )
-exp_name_values=( griddly-clusters-generated-seed-sweep-translation-rotation-relpos )
+exp_name_values=( griddly-clusters-generated-param-sweep-translation-rotation-relpos )
 track_values=( True )
 total_timesteps_values=( 50000000 )
 processes_values=( 8 )
 num_envs_values=( 1024 )
 num_steps_values=( 64 )
 num_minibatches_values=( 16 )
-learning_rate_values=( 0.005 )
-seed_values=( 0 1 2 3 4 5 6 7 8 9 )
-ent_coef_values=( 0.2 )
+learning_rate_values=( 0.005 0.01 0.05 )
+seed_values=( 0 )
+ent_coef_values=( 0.2 0.1 0.05 )
 eval_interval_values=( 1000000 )
 eval_steps_values=( 500 )
 eval_num_env_values=( 1 )
@@ -29,7 +29,7 @@ eval_processes_values=( 1 )
 eval_capture_videos_values=( True )
 translate_values=( "{\"reference_entity\": \"avatar\", \"position_features\": [\"x\", \"y\"], \"orientation_features\": [\"ox\", \"oy\"]}" )
 relpos_encoding_values=( "{\"extent\": [10, 10], \"exclude_entities\": [\"__global__\"], \"position_features\": [\"x\", \"y\"]}" )
-data_dir_values=( /data/scratch/acw434/griddly-clusters-generated-seed-sweep-translation-rotation-relpos )
+data_dir_values=( /data/scratch/acw434/griddly-clusters-generated-param-sweep-translation-rotation-relpos )
 trial=${SGE_TASK_ID}
 gym_id="${gym_id_values[$(( trial % ${#gym_id_values[@]} ))]}"
 trial=$(( trial / ${#gym_id_values[@]} ))

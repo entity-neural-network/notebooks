@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'griddly-clusters-generated-seed-sweep-translation-rotation-relpos'
+    job_name = 'griddly-clusters-generated-param-sweep-translation-rotation-relpos'
     script = get_script(
         {
             'sge_time_h': 6,

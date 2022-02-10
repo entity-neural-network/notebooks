@@ -7,7 +7,7 @@
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
 #$ -l h_rt=6:0:0
-#$ -t 1-27
+#$ -t 1-30
 #$ -o logs/
 #$ -e logs/
 
@@ -19,9 +19,9 @@ processes_values=( 8 )
 num_envs_values=( 1024 )
 num_steps_values=( 64 )
 num_minibatches_values=( 16 )
-learning_rate_values=( 0.005 0.01 0.05 )
-seed_values=( 0 )
-ent_coef_values=( 0.2 0.1 0.05 )
+learning_rate_values=( 0.005 )
+seed_values=( 0 1 2 3 4 5 6 7 8 9 )
+ent_coef_values=( 0.2 )
 eval_interval_values=( 1000000 )
 eval_steps_values=( 500 )
 eval_num_env_values=( 1 )
