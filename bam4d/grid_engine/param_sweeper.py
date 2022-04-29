@@ -190,7 +190,7 @@ def get_script(fields, params, param_order=None):
     # build args
     script_args = ''
     for key in param_order:
-        script_args += f' --{key}="${{{key.replace("-", "_")}}}"'
+        script_args += f' {key}="${{{key.replace("-", "_")}}}"'
 
     # build template substitutions (overriding defaults)
     subs = {
@@ -241,17 +241,18 @@ if __name__ == '__main__':
             'sge_job_name': 'sge_test'
         },
         {
-            'gym-id': ['GDY-Clusters-0'],
-            'exp-name': ['griddly-clusters-sge-sweep'],
+            'env.id': ['GDY-Clusters-0'],
+            'wandb_project_name': ['griddly-clusters-sge-sweep'],
             'track': ['True'],
-            'total-timesteps': [50000000],
-            'processes': [8],
-            'num-envs': [128],
-            'learning-rate': [0.005],
-            'ent-coef': [0.2],
-            'eval-interval': [50000],
-            'eval-steps': [300],
-            'eval-num-env': [4]
+            'total_timesteps': [50000000],
+            'rollout.processes': [8],
+            'rollout.num_envs': [128],
+            'optim.learning-rate': [0.005],
+            'ppo.ent_coef': [0.2],
+            'eval.interval': [50000],
+            'eval.steps': [300],
+            'eval.num_env': [4],
+            'eval.capture_videos': [True]
         })
 
     with open(f'submit-array.sh', 'w') as f:
