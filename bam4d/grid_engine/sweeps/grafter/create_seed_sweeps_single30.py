@@ -36,11 +36,11 @@ if __name__ == '__main__':
 
             'ppo.ent_coef': [0.2, 0.1, 0.05],
 
-            'eval.interval': [500000],
-            'eval.steps': [1000],
-            'eval.num_envs': [1],
-            'eval.processes': [1],
-            'eval.capture_videos': [True]
+            # 'eval.interval': [500000],
+            # 'eval.steps': [1000],
+            # 'eval.num_envs': [1],
+            # 'eval.processes': [1],
+            # 'eval.capture_videos': [True]
 
         })
     with open(f'submit-array_{job_name}.sh', 'w') as f:
