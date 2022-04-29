@@ -11,10 +11,10 @@
 #$ -o logs/
 #$ -e logs/
 
-env_id_values=( GDY-Grafter-Single-30 )
+env_id_values=( GDY-Grafter-Single-30 GDY-Grafter-Single-50 GDY-Grafter-Single-100 )
 name_values=( grafter-single-30x30-hyperparam-sweep )
 track_values=( True )
-seed_values=( 0 1 2 )
+seed_values=( 0 )
 total_timesteps_values=( 5000000 )
 data_dir_values=( /data/scratch/acw434/grafter-single-30x30-hyperparam-sweep )
 rollout_processes_values=( 8 )
@@ -23,8 +23,8 @@ rollout_steps_values=( 64 128 )
 optim_lr_values=( 0.005 0.001 0.0005 )
 optim_bs_values=( 8192 16384 32768 )
 ppo_ent_coef_values=( 0.2 0.1 0.05 )
-eval_interval_values=( 100000 )
-eval_steps_values=( 500 )
+eval_interval_values=( 1000000 )
+eval_steps_values=( 1000 )
 eval_num_envs_values=( 1 )
 eval_processes_values=( 1 )
 eval_capture_videos_values=( True )
