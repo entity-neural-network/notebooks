@@ -134,7 +134,7 @@ def _get_params_bash(params, values):
     assign_temps = PARAM_EXPRS['param_val_assign']
 
     for param, vals in zip(params, values):
-        param = param.replace('-', '_')
+        param = param.replace('.', '_')
         init_lines.append(
             init_temp.format(param=param, values=_to_bash(vals)))
         assign_lines.append(
@@ -190,7 +190,7 @@ def get_script(fields, params, param_order=None):
     # build args
     script_args = ''
     for key in param_order:
-        script_args += f' {key}="${{{key.replace("-", "_")}}}"'
+        script_args += f' {key}="${{{key.replace(".", "_")}}}"'
 
     # build template substitutions (overriding defaults)
     subs = {
