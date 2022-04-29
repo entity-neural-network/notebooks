@@ -2,7 +2,8 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'grafter-single-30x30-hyperparam-sweep'
+    job_name = 'grafter-single-hyperparam-sweep'
+
     script = get_script(
         {
             'sge_time_h': 6,
@@ -17,7 +18,7 @@ if __name__ == '__main__':
             'sge_entry_point': '~/enn/incubator/enn_zoo/enn_zoo/train.py'
         },
         {
-            'env.id': ['GDY-Grafter-Single-30','GDY-Grafter-Single-50','GDY-Grafter-Single-100'],
+            'env.id': ['GDY-Grafter-Single-30'],
 
             'name': [f'{job_name}'],
             'track': ['True'],
@@ -26,11 +27,13 @@ if __name__ == '__main__':
             'data_dir': [f'/data/scratch/acw434/{job_name}'],
 
             'rollout.processes': [8],
-            'rollout.num_envs': [128, 256],
-            'rollout.steps': [64, 128],
+            'rollout.num_envs': [256, 512, 1024],
+            'rollout.steps': [64, 128, 512],
             #'rolloutnum-minibatches': [16, 32],
-            'optim.lr': [0.005, 0.001, 0.0005],
+
             'optim.bs': [8192, 16384, 32768],
+            'optim.lr': [0.005, 0.001, 0.0005],
+
             'ppo.ent_coef': [0.2, 0.1, 0.05],
 
             'eval.interval': [1000000],
@@ -40,6 +43,5 @@ if __name__ == '__main__':
             'eval.capture_videos': [True]
 
         })
-
     with open(f'submit-array_{job_name}.sh', 'w') as f:
         f.write(script)
