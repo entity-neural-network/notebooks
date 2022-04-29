@@ -18,12 +18,12 @@ if __name__ == '__main__':
             'sge_entry_point': '~/enn/incubator/enn_zoo/enn_zoo/train.py'
         },
         {
-            'env.id': ['GDY-Grafter-Single-30'],
+            'env.id': ['GDY-Grafter-Single-30','GDY-Grafter-Single-50','GDY-Grafter-Single-100'],
 
             'name': [f'{job_name}'],
             'track': ['True'],
             'seed': [0],
-            'total_timesteps': [5000000],
+            'total_timesteps': [1000000],
             'data_dir': [f'/data/scratch/acw434/{job_name}'],
 
             'rollout.processes': [8],
@@ -36,7 +36,7 @@ if __name__ == '__main__':
 
             'ppo.ent_coef': [0.2, 0.1, 0.05],
 
-            'eval.interval': [1000000],
+            'eval.interval': [500000],
             'eval.steps': [1000],
             'eval.num_envs': [1],
             'eval.processes': [1],
