@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'grafter-single-hyperparam-sweep-30'
+    job_name = 'grafter-single-hyperparam-sweep-30-merge-global'
 
     script = get_script(
         {
