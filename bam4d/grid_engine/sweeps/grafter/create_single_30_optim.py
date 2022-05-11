@@ -36,8 +36,8 @@ if __name__ == '__main__':
 
             'ppo.ent_coef': [0.01],
 
-            'eval.interval': [100000],
-            'eval.steps': [10000],
+            'eval.interval': [500000],
+            'eval.steps': [1000],
             'eval.num_envs': [3],
             'eval.processes': [3],
             'eval.capture_videos': [True]

@@ -23,8 +23,8 @@ rollout_steps_values=( 64 )
 optim_bs_values=( 8192 )
 optim_lr_values=( 0.005 )
 ppo_ent_coef_values=( 0.01 )
-eval_interval_values=( 100000 )
-eval_steps_values=( 10000 )
+eval_interval_values=( 500000 )
+eval_steps_values=( 1000 )
 eval_num_envs_values=( 3 )
 eval_processes_values=( 3 )
 eval_capture_videos_values=( True )
@@ -68,6 +68,8 @@ module load cuda anaconda3 vulkan-sdk
 conda activate conda_poetry_base
 
 export PYTHONUNBUFFERED=1
+
+OMP_NUM_THREADS=1
 
 # Set up poetry
 cd ~/enn/incubator

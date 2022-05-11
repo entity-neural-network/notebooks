@@ -49,6 +49,8 @@ conda activate conda_poetry_base
 
 export PYTHONUNBUFFERED=1
 
+OMP_NUM_THREADS=1
+
 # Set up poetry
 cd {sge_root_directory}
 poetry shell
