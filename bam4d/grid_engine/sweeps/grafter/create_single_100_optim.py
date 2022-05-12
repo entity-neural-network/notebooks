@@ -38,8 +38,8 @@ if __name__ == '__main__':
 
             'eval.interval': [100000],
             'eval.steps': [10000],
-            'eval.num_envs': [3],
-            'eval.processes': [3],
+            'eval.num_envs': [1],
+            'eval.processes': [1],
             'eval.capture_videos': [True]
 
         })
