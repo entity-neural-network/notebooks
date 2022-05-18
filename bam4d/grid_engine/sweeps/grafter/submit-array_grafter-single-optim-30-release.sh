@@ -2,7 +2,7 @@
 #$ -cwd
 #$ -pe smp 8
 #$ -l h_vmem=11G
-#$ -N grafter-single-optim-100
+#$ -N grafter-single-optim-30-release
 #$ -l gpu=1
 #$ -l gpu_type=ampere
 #$ -l cluster=andrena
@@ -11,12 +11,12 @@
 #$ -o logs/
 #$ -e logs/
 
-env_id_values=( GDY-Grafter-Single-100 )
-name_values=( grafter-single-optim-100 )
+env_id_values=( GDY-Grafter-Single-30 )
+name_values=( grafter-single-optim-30-release )
 track_values=( True )
 seed_values=( 0 1 2 3 4 5 6 7 8 9 )
 total_timesteps_values=( 10000000 )
-data_dir_values=( /data/scratch/acw434/grafter-single-optim-100 )
+data_dir_values=( /data/scratch/acw434/grafter-single-optim-30-release )
 rollout_processes_values=( 8 )
 rollout_num_envs_values=( 256 )
 rollout_steps_values=( 64 )

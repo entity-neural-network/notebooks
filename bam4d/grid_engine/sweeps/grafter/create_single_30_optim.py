@@ -2,7 +2,7 @@ from bam4d.grid_engine.param_sweeper import get_script
 
 if __name__ == '__main__':
 
-    job_name = 'grafter-single-optim-30'
+    job_name = 'grafter-single-optim-30-release'
 
     script = get_script(
         {
@@ -37,7 +37,7 @@ if __name__ == '__main__':
             'ppo.ent_coef': [0.01],
 
             'eval.interval': [500000],
-            'eval.steps': [10000],
+            'eval.steps': [1000],
             'eval.num_envs': [1],
             'eval.processes': [1],
             'eval.capture_videos': [True]
